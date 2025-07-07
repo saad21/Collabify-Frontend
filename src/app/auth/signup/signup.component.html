@@ -1,0 +1,55 @@
+<div class="signup-container p-fluid">
+  <div class="signup-card">
+    <h1>Create Account</h1>
+    <p-toast></p-toast>
+
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+      <!-- Name Field -->
+      <div class="p-field">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" pInputText formControlName="name" placeholder="John Doe">
+        <small *ngIf="signupForm.get('name')?.errors?.['required']" class="p-error">Name is required</small>
+      </div>
+
+      <!-- Email Field -->
+      <div class="p-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" pInputText formControlName="email" placeholder="example@mail.com">
+        <small *ngIf="signupForm.get('email')?.errors?.['email']" class="p-error">Invalid email format</small>
+      </div>
+
+      <!-- Password Field -->
+      <div class="p-field">
+        <label for="password">Password</label>
+        <p-password id="password" formControlName="password" [toggleMask]="true" [feedback]="true"
+          placeholder="Min 6 characters"></p-password>
+      </div>
+
+      <!-- Terms Checkbox -->
+      <div class="p-field-checkbox">
+        <p-checkbox id="acceptTerms" formControlName="acceptTerms" [binary]="true"></p-checkbox>
+        <label for="acceptTerms">I agree to the Terms and Conditions</label>
+        <small *ngIf="signupForm.get('acceptTerms')?.errors?.['requiredTrue']" class="p-error block">You must accept the
+          terms</small>
+      </div>
+
+      <!-- Submit Button -->
+      <button pButton type="submit" label="Sign Up" class="p-button-raised p-button-primary"
+        [disabled]="signupForm.invalid"></button>
+    </form>
+
+    <p-divider align="center">
+      <span class="p-tag">OR</span>
+    </p-divider>
+
+    <div class="social-login">
+      <button pButton icon="pi pi-google" class="p-button-rounded p-button-outlined"></button>
+      <button pButton icon="pi pi-facebook" class="p-button-rounded p-button-outlined"></button>
+      <button pButton icon="pi pi-github" class="p-button-rounded p-button-outlined"></button>
+    </div>
+
+    <p class="login-link">
+      Already have an account? <a [routerLink]="['/login']">Log In</a>
+    </p>
+  </div>
+</div>

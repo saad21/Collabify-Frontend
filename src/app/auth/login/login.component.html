@@ -1,0 +1,55 @@
+<main class="main-content">
+  <div class="login-container">
+    <h1 class="welcome-title">Welcome back</h1>
+    <p class="welcome-subtitle">Enter your details to sign in to your account.</p>
+
+    <form [formGroup]="loginForm" (submit)="onSubmit()">
+      <div class="form-group">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" pInputText class="form-input" name="email" formControlName="email" />
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Password</label>
+        <p-password inputId="password" name="password" class="form-input" [ngStyle]="{display: 'block'}"
+          [feedback]="false" formControlName="password"></p-password>
+        <a href="#" class="forgot-password">Forgot Password?</a>
+      </div>
+
+      <button pButton type="submit" label="Continue" class="continue-btn" (click)="onSubmit()"></button>
+    </form>
+
+    <div class="divider">Or Sign in with</div>
+
+    <div class="social-buttons">
+      <button pButton class="social-btn p-button-outlined" icon="pi pi-google" label="Google"></button>
+      <button pButton class="social-btn p-button-outlined" icon="pi pi-apple" label="Apple"></button>
+      <button pButton class="social-btn p-button-outlined" icon="pi pi-facebook" label="Facebook"></button>
+    </div>
+  </div>
+
+  <div class="illustration">
+    <div class="person person-1">
+      <div class="person-head"></div>
+      <div class="person-body"></div>
+    </div>
+    <div class="person person-2">
+      <div class="person-head"></div>
+      <div class="person-body"></div>
+    </div>
+    <div class="checklist">
+      <div class="checklist-item">
+        <div class="checklist-icon"></div>
+        <div class="checklist-line"></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"></div>
+        <div class="checklist-line"></div>
+      </div>
+      <div class="checklist-item">
+        <div class="checklist-icon"></div>
+        <div class="checklist-line"></div>
+      </div>
+    </div>
+  </div>
+</main>
