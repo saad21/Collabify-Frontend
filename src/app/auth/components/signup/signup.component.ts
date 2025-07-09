@@ -9,7 +9,6 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   standalone: true,
@@ -36,7 +35,6 @@ export class SignupComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private messageService: MessageService,
-    private auth: AuthService
   ) { }
 
   ngOnInit() {

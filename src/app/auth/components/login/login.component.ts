@@ -10,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MessageModule } from 'primeng/message';
 import { PasswordModule } from 'primeng/password';
 import { ToolbarModule } from 'primeng/toolbar';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -32,7 +32,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent {
   loginForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private messageService: MessageService) {
+  constructor(private fb: FormBuilder, private auth: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
@@ -43,13 +43,8 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       const formValue = this.loginForm.getRawValue();
       this.auth.login(formValue).subscribe((res: any) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Account Created',
-          detail: 'Redirecting to dashboard...'
-        });
+        console.log('Access token:', res.accesstoken);
       })
-      // Implement login logic here
     } else {
       this.loginForm.markAllAsTouched();
     }

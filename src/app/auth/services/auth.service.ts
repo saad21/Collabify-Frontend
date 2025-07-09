@@ -2,9 +2,10 @@
 
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { LoginDto } from '../models/login.dto';
 import { SignupDto } from '../models/signup.dto';
+import { TokenService } from '../../core/services/token.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,10 +13,14 @@ import { SignupDto } from '../models/signup.dto';
 export class AuthService {
   private baseUrl = 'http://localhost:3000/auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private tokenService: TokenService) { }
 
-  login(data: LoginDto): Observable<any> {
-    return this.http.post(`${this.baseUrl}/login`, data);
+  login(credentials: LoginDto): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/login`, credentials).pipe(
+      tap(response => {
+        this.tokenService.setToken(response.accessToken);
+      })
+    );
   }
 
   signup(data: SignupDto): Observable<any> {
