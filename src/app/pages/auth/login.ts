@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -62,15 +62,13 @@ import { AppFloatingConfigurator } from '../../layout/component/app.floatingconf
         </div>
     `
 })
-export class Login implements OnInit {
-    constructor(private fb: FormBuilder) { }
+export class Login {
+    email: string = '';
 
-}
-ngOnInit(): void {
+    password: string = '';
 
-}
-login() {
+    checked: boolean = false;
+    login() {
 
-
-}
+    }
 }
